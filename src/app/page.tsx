@@ -1,65 +1,121 @@
-import Image from "next/image";
+// src/app/page.tsx
+'use client'; 
 
-export default function Home() {
+import React, { useState, useEffect } from 'react';
+import { Mail, Phone, MapPin, Sun, Moon } from 'lucide-react';
+import { userData } from '../lib/data'; 
+import { BentoGrid } from './components/BentoGrid'; 
+import { ThemeToggleProps } from '../lib/types'; 
+
+const VerifiedIcon: React.FC = () => (
+  <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 flex-shrink-0" aria-label="Verified user">
+    <path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z" fill="#1d9bf0"></path>
+  </svg>
+);
+
+const ThemeToggle: React.FC<ThemeToggleProps> = ({ darkMode, setDarkMode }) => (
+  <button
+    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+      darkMode ? 'bg-blue-600' : 'bg-gray-300 hover:bg-gray-400'
+    }`}
+    aria-label="Toggle theme"
+    onClick={() => setDarkMode(!darkMode)}
+  >
+    <div
+      className={`absolute left-0.5 top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-white shadow-lg transition-all duration-300 ease-in-out ${
+        darkMode ? 'translate-x-5' : 'translate-x-0'
+      }`}
+    >
+      {darkMode ? (
+        <Moon className="h-3 w-3 text-blue-600" />
+      ) : (
+        <Sun className="h-3 w-3 text-gray-500" />
+      )}
+    </div>
+  </button>
+);
+
+const ProfilePage: React.FC = () => {
+  const [darkMode, setDarkMode] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const themeClass = darkMode ? 'dark' : '';
+  const rootClasses = `${themeClass} min-h-screen font-sans antialiased text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-950 transition-colors duration-300`;
+
+  // Hydration Fix: Render nothing (or a skeleton) until mounted on client
+  if (!mounted) {
+    return null; 
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className={rootClasses}>
+      
+      {/* Global Style Injection */}
+      <style jsx global>{`
+        .font-sans {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        }
+        .profile-image {
+          background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 2rem;
+          font-weight: bold;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+      `}</style>
+
+      <main className="max-w-4xl mx-auto px-4 py-8 md:py-12">
+        <section className="mb-10">
+          <div className="flex items-start gap-4 md:gap-6">
+            <div className="rounded-xl w-32 h-32 md:w-40 md:h-40 object-cover flex-shrink-0 profile-image">BL</div>
+            
+            <div className="flex-1 min-w-0">
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h1 className="text-2xl md:text-3xl font-bold truncate">{userData.name}</h1>
+                    <VerifiedIcon />
+                  </div>
+                  <p className="text-sm md:text-base text-blue-600 dark:text-blue-400 mt-1">{userData.title}</p>
+                  <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                    <span className="truncate">{userData.location}</span>
+                  </p>
+                </div>
+                <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+              </div>
+              
+              <div className="flex gap-3 mt-6">
+                <a 
+                  href="https://calendly.com/bryllim/consultation" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex h-9 items-center rounded-xl bg-blue-600 px-4 text-sm font-medium text-white shadow-lg shadow-blue-500/30 transition-all duration-200 hover:bg-blue-700 hover:-translate-y-0.5 gap-1 whitespace-nowrap"
+                >
+                  <Phone className="w-4 h-4" /> Schedule a Call
+                </a>
+                <a 
+                  href="mailto:bryllim@gmail.com" 
+                  className="inline-flex h-9 items-center rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:-translate-y-0.5 gap-1 whitespace-nowrap text-gray-700 dark:text-gray-300 shadow-sm dark:shadow-none"
+                >
+                  <Mail className="w-4 h-4" /> Send Email
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <BentoGrid />
       </main>
     </div>
   );
-}
+};
+
+export default ProfilePage;
