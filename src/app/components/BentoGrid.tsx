@@ -4,6 +4,8 @@ import { Link } from 'lucide-react';
 import { BentoCard } from './BentoCard';
 import { userData } from '../../lib/data';
 
+
+
 const ExperienceCard: React.FC = () => (
   <BentoCard title="Experience" iconName="Briefcase" className="md:row-span-2 flex flex-col">
     <div className="relative space-y-4 mt-1 flex-1">
@@ -52,7 +54,7 @@ const TechStackCard: React.FC = () => (
 );
 
 const ProjectsCard: React.FC = () => (
-  <BentoCard title="Recent Projects" iconName="RefreshCcw" className="md:col-span-6">
+  <BentoCard title="Recent Projects" iconName="RefreshCcw" className="md:col-span-4">
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-1">
       {userData.projects.map(project => (
         <a
@@ -78,7 +80,7 @@ const ProjectsCard: React.FC = () => (
 );
 
 const CertificationsCard: React.FC = () => (
-  <BentoCard title="Recent Certifications" iconName="Award" className="md:col-span-3">
+  <BentoCard title="Recent Certifications" iconName="Award" className="md:col-span-6">
     <div className="space-y-2 mt-2">
       {userData.certifications.map((cert, index) => (
         <a
@@ -97,7 +99,7 @@ const CertificationsCard: React.FC = () => (
 );
 
 export const BentoGrid: React.FC = () => (
-  <section className="grid grid-cols-1 md:grid-cols-6 gap-4">
+  <section className="grid grid-cols-1 md:grid-cols-6 gap-2">
     
     <BentoCard title="About" iconName="Compass" className="md:col-span-4">
       <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{userData.about}</p>
@@ -109,13 +111,20 @@ export const BentoGrid: React.FC = () => (
 
     <TechStackCard />
 
-    <BentoCard title="Beyond Coding" iconName="RefreshCcw" className="md:col-span-3">
+    <BentoCard title="Beyond Coding" iconName="RefreshCcw" className="md:col-span-2">
       <p className="text-sm text-gray-700 dark:text-gray-300">{userData.beyondCoding}</p>
     </BentoCard>
     
-    <CertificationsCard />
-    
+
     <ProjectsCard />
+
+    <CertificationsCard />
+
+    
+    
+    
+    
+    
    
   </section>
 );

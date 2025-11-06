@@ -2,10 +2,15 @@
 'use client'; 
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'; // Assuming you use the Next.js Image component
 import { Mail, Phone, MapPin, Sun, Moon } from 'lucide-react';
+
+// Corrected relative imports based on your structure
 import { userData } from '../lib/data'; 
 import { BentoGrid } from './components/BentoGrid'; 
 import { ThemeToggleProps } from '../lib/types'; 
+
+// --- Shared/Utility Components ---
 
 const VerifiedIcon: React.FC = () => (
   <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 flex-shrink-0" aria-label="Verified user">
@@ -35,10 +40,13 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ darkMode, setDarkMode }) => (
   </button>
 );
 
+// --- Main Application Component ---
+
 const ProfilePage: React.FC = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [mounted, setMounted] = useState(false);
 
+  // CRITICAL FIX: Only set theme class after component mounts on the client
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -46,7 +54,7 @@ const ProfilePage: React.FC = () => {
   const themeClass = darkMode ? 'dark' : '';
   const rootClasses = `${themeClass} min-h-screen font-sans antialiased text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-950 transition-colors duration-300`;
 
-  // Hydration Fix: Render nothing (or a skeleton) until mounted on client
+  // Hydration Fix: Return null until mounted to avoid SSR mismatch
   if (!mounted) {
     return null; 
   }
@@ -54,27 +62,28 @@ const ProfilePage: React.FC = () => {
   return (
     <div className={rootClasses}>
       
-      {/* Global Style Injection */}
+      {/* Global font style only */}
       <style jsx global>{`
         .font-sans {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
         }
-        .profile-image {
-          background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-size: 2rem;
-          font-weight: bold;
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
       `}</style>
 
       <main className="max-w-4xl mx-auto px-4 py-8 md:py-12">
-        <section className="mb-10">
+        <section className="mb-6">
           <div className="flex items-start gap-4 md:gap-6">
-            <div className="rounded-xl w-32 h-32 md:w-40 md:h-40 object-cover flex-shrink-0 profile-image">BL</div>
+            
+            {/* PROFILE IMAGE: Replace '/profile.jpg' with your actual image path */}
+            <div className="flex-shrink-0">
+                <Image
+                    src="/profile.jpg" // CHANGE THIS PATH
+                    alt={`${userData.name}'s profile picture`}
+                    className="rounded-xl object-cover"
+                    width={160}
+                    height={160}
+                    style={{ width: '10rem', height: '10rem' }} // Ensures consistency with w-40 h-40
+                />
+            </div>
             
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-4">
@@ -112,6 +121,7 @@ const ProfilePage: React.FC = () => {
           </div>
         </section>
 
+        {/* The corrected BentoGrid component usage */}
         <BentoGrid />
       </main>
     </div>

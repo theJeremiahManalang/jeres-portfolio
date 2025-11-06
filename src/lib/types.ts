@@ -28,6 +28,8 @@ export interface UserData {
   title: string;
   location: string;
   about: string;
+  motto: string;
+  financialMotto: string;
   beyondCoding: string;
   experience: ExperienceItem[];
   techStack: {

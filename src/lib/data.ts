@@ -2,10 +2,12 @@
 import { UserData } from './types';
 
 export const userData: UserData = {
-  name: "Bryl Lim",
-  title: "Software Engineer / Content Creator",
+  name: "Jeremiah L. Manalang",
+  title: "Computer Engineer / Video Editor",
   location: "Metro Manila, Philippines",
   about: "I'm a full-stack software engineer specializing in developing solutions with JavaScript, Python, and PHP. I work on projects including building modern web applications, mobile apps, search engine optimization, digital marketing, and making code tutorials. Lately, I've been diving deeper into the world of artificial intelligence, focusing on integrating AI tools and techniques into modern applications. My work now includes developing AI-powered solutions, creating intelligent applications, and leveraging generative AI to optimize development workflows and deliver cutting-edge technology.",
+  motto: "I'll see you in the top because at the bottom is too crowded, but we never lock down on anybody unless we're willing to help them up.",
+  financialMotto: "Stay small enough, long enough. You'll be big enough, soon enough",
   beyondCoding: "When not writing code, I focus on learning about emerging technologies, minimalism, and startup culture. I share my knowledge through content creation and community building.",
   experience: [
     { title: "Principal AI Engineer", company: "Standard Chartered", year: "2025", isCurrent: true },
