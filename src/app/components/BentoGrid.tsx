@@ -36,6 +36,7 @@ const ExperienceCard: React.FC = () => (
 
 const TechStackCard: React.FC = () => (
   <BentoCard title="Tech Stack" iconName="Code" className="md:col-span-4">
+    
     <div className="space-y-4">
       {Object.entries(userData.techStack).map(([category, skills]) => (
         <div key={category}>
@@ -80,7 +81,7 @@ const ProjectsCard: React.FC = () => (
 );
 
 const CertificationsCard: React.FC = () => (
-  <BentoCard title="Recent Certifications" iconName="Award" className="md:col-span-6">
+  <BentoCard title="Recent Certifications" iconName="Award" className="md:col-span-2">
     <div className="space-y-2 mt-2">
       {userData.certifications.map((cert, index) => (
         <a
@@ -105,26 +106,27 @@ export const BentoGrid: React.FC = () => (
       <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{userData.about}</p>
     </BentoCard>
 
-    <div className="col-span-1 md:col-span-2 md:row-span-2">
+    <div className="col-span-1 md:col-span-2 md:row-span-1">
       <ExperienceCard />
     </div>
 
-    <TechStackCard />
-
     <BentoCard title="Beyond Coding" iconName="RefreshCcw" className="md:col-span-2">
-      <p className="text-sm text-gray-700 dark:text-gray-300">{userData.beyondCoding}</p>
+      <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 flex-1">{userData.beyondCoding}</p>
+      <a
+        href="/beyond-coding-details" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-center w-full py-1.5 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-md"
+      >
+        Learn More
+      </a>
     </BentoCard>
-    
+
+    <TechStackCard />
 
     <ProjectsCard />
 
     <CertificationsCard />
 
-    
-    
-    
-    
-    
-   
   </section>
 );
