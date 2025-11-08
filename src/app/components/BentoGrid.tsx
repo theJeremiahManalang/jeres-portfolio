@@ -36,7 +36,12 @@ const ExperienceCard: React.FC = () => (
 
 const TechStackCard: React.FC = () => (
   <BentoCard title="Tech Stack" iconName="Code" className="md:col-span-4">
-    
+    <a 
+        href="/full-tech-stack" // **Change this URL to your actual full tech stack page**
+        className="absolute top-4 right-6 text-xs font-medium text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors flex items-center gap-1"
+    >
+        View All <span className="text-sm leading-none">&gt;</span>
+    </a>
     <div className="space-y-4">
       {Object.entries(userData.techStack).map(([category, skills]) => (
         <div key={category}>

@@ -1,16 +1,22 @@
+// src/app/layout.tsx
+
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google"; // Removed Geist_Mono for brevity, but you can keep it
 import "./globals.css";
 
+// Initialize Geist font with variables
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
+// Assuming Geist Mono is still needed, keep it
+/*
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+*/
 
 export const metadata: Metadata = {
   title: "Jeremiah's Portfolio",
@@ -25,9 +31,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} antialiased`}
+        // You can add geistMono.variable back if needed
       >
-        {children}
+        {/* *** FIX FOR EXTERNAL SCRIPTS/EXTENSIONS (like Grammarly) ***
+          The outer div with suppressHydrationWarning tells React to ignore
+          attribute mismatches on this element and its descendants during hydration.
+          This is a targeted fix for mismatches introduced by browser extensions 
+          that modify the <body> or its immediate children before React takes over.
+        */}
+        <div suppressHydrationWarning>
+          {children}
+        </div>
       </body>
     </html>
   );

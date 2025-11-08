@@ -103,7 +103,7 @@ const ProfilePage: React.FC = () => {
               
               <div className="flex gap-3 mt-6">
                 <a 
-                  href="https://calendly.com/bryllim/consultation" 
+                  href="https://calendly.com/bryllim/consultation" // change
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="inline-flex h-9 items-center rounded-xl bg-blue-600 px-4 text-sm font-medium text-white shadow-lg shadow-blue-500/30 transition-all duration-200 hover:bg-blue-700 hover:-translate-y-0.5 gap-1 whitespace-nowrap"
@@ -111,7 +111,7 @@ const ProfilePage: React.FC = () => {
                   <Phone className="w-4 h-4" /> Schedule a Call
                 </a>
                 <a 
-                  href="mailto:bryllim@gmail.com" 
+                  href="mailto:bryllim@gmail.com" // change
                   className="inline-flex h-9 items-center rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:-translate-y-0.5 gap-1 whitespace-nowrap text-gray-700 dark:text-gray-300 shadow-sm dark:shadow-none"
                 >
                   <Mail className="w-4 h-4" /> Send Email
