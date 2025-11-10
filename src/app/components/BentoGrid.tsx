@@ -16,10 +16,10 @@ const ExperienceCard: React.FC = () => (
           <div className={`absolute left-0 top-1.5 w-3 h-3 rounded-full border-2 transition-colors ${
             role.isCurrent
               ? 'border-blue-500 bg-blue-500'
-              : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 group-hover/role:bg-blue-500'
+              : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 group-hover/role:bg-blue-500 dark:group-hover/role:bg-blue-500 cursor-pointer'
           }`}></div>
           <div className="space-y-1">
-            <h3 className={`text-sm font-semibold transition-colors ${role.isCurrent ? 'text-blue-500' : 'text-gray-900 dark:text-white group-hover/role:text-blue-500'}`}>
+            <h3 className={`text-sm font-semibold transition-colors ${role.isCurrent ? 'text-blue-500' : 'text-gray-900 dark:text-white group-hover/role:text-blue-500 dark:group-hover/role:text-blue-500 cursor-pointer'}`}>
               {role.title}
             </h3>
             <div className="flex items-center justify-between">
