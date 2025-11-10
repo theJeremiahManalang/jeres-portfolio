@@ -17,18 +17,20 @@ export const userData: UserData = {
     { title: "Hello World! 👋🏻", company: "Wrote my first line of code", year: "2013" },
   ],
   techStack: {
-    frontend: ["C#", "JavaScript", "React", "TypeScript", "Next.js", "Vue.js", "Tailwind CSS"],
-    backend: ["Node.js", "Python", "PHP", "Laravel", "PostgreSQL", "MongoDB"],
-    devOps: ["AWS", "Docker", "Kubernetes", "GitHub Actions"],
+    frontend: ["HTML5", "CSS3", "JavaScript", "React", "TypeScript", "Next.js", "Vue.js", "Tailwind CSS", "Bootstrap"],
+    backend: ["PHP", "Python", "MySQL", "SQLite", "Firebase", "C#/.NET", "Laravel", ".NET Core/ASP.NET Core"],
+    devtools: ["Git", "Github", "Visual Studio", "VS Code", "Pycharm", "Jupyter Notebook", "Arduino IDE", "Thonny IDE", "Google Colab", "Notion", "Discord", "MS Teams"],
+    aiml: ["TensorFlow", "PyTorch", "Roboflow", "n8n", "YOLOv8"],
+    microcontrollers: ["Arduino UNO", "Arduino NANO", "Arduno Micro", "ESP32", "Raspberry Pi Pico/Pico W", "PIC18"],
   },
   projects: [
-    { name: "CodeCred", description: "Online certifications for programmers", url: "https://codecred.dev", domain: "codecred.dev" },
-    { name: "BASE404", description: "Online coding bootcamp", url: "https://base-404.com", domain: "base-404.com" },
+    { name: "Keynergy", description: "Energy harvesting mechanical keyboard", url: "#", domain: "https://youtu.be/6ZsAPNvZQUU" },
+    { name: "MPL PH S16 AI-Predictor", description: "Predict the finals champion for MPL S16", url: "#", domain: "base-404.com" },
     { name: "DIIN.PH", description: "AI-powered wardrobe assistant", url: "https://diin.ph", domain: "diin.ph" },
     { name: "DYNAMIS Workout Tracker", description: "AI-powered workout tracker", url: "https://dynamis-app.online", domain: "dynamis-app.online" },
   ],
   certifications: [
-    { name: "Huawei Developer Expert", issuer: "Huawei", url: "#" },
-    { name: "Certified Kubernetes Administrator", issuer: "CNCF", url: "#" },
+    { name: "St. Vincent de Paul Student Leadership Award", issuer: "AdU - Office of Student Affairs", url: "#" },
+    { name: "Student Leadership Award", issuer: "AdU - CpE Department", url: "#" },
   ]
 };

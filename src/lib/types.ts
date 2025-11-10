@@ -35,7 +35,9 @@ export interface UserData {
   techStack: {
     frontend: string[];
     backend: string[];
-    devOps: string[];
+    devtools: string[];
+    aiml: string[];
+    microcontrollers: string[];
   };
   projects: ProjectItem[];
   certifications: CertificationItem[];

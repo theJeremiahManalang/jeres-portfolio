@@ -1,8 +1,9 @@
 // src/app/components/BentoGrid.tsx
-import React from 'react';
+import React, { useState } from 'react'; 
 import { Link } from 'lucide-react';
 import { BentoCard } from './BentoCard';
 import { userData } from '../../lib/data';
+import { TechStackModal } from './TechStackModal';
 
 
 
@@ -34,30 +35,46 @@ const ExperienceCard: React.FC = () => (
   </BentoCard>
 );
 
-const TechStackCard: React.FC = () => (
-  <BentoCard title="Tech Stack" iconName="Code" className="md:col-span-4">
-    <a 
-        href="/full-tech-stack" // **Change this URL to your actual full tech stack page**
-        className="absolute top-4 right-6 text-xs font-medium text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors flex items-center gap-1"
-    >
-        View All <span className="text-sm leading-none">&gt;</span>
-    </a>
-    <div className="space-y-4">
-      {Object.entries(userData.techStack).map(([category, skills]) => (
-        <div key={category}>
-          <h3 className="text-sm font-semibold mb-2 capitalize text-gray-700 dark:text-gray-300">{category.replace(/([A-Z])/g, ' $1')}</h3>
-          <div className="flex flex-wrap gap-1.5">
-            {skills.map(skill => (
-              <span key={skill} className="px-2 py-0.5 text-xs rounded-md bg-gray-100 border border-gray-200 dark:bg-gray-800 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-colors">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  </BentoCard>
-);
+const TechStackCard: React.FC<{ onOpenModal: () => void }> = ({ onOpenModal }) => {
+  // Para di mag-overflow ang tech stack badges, we set limits per category
+  const limits: { [key: string]: number } = {
+    frontend: 7,
+    backend: 7,
+    devtools: 6,
+  };
+  
+  return (
+    <BentoCard title="Tech Stack" iconName="Code" className="md:col-span-4">
+      {/* The 'View All' button now calls the onOpenModal prop */}
+      <button 
+          onClick={onOpenModal} 
+          className="absolute top-4 right-6 text-xs font-medium text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors flex items-center gap-1 group"
+      >
+          View All <span className="text-sm leading-none transition-transform group-hover:translate-x-0.5">&gt;</span>
+      </button>
+      <div className="space-y-4">
+        {Object.entries(userData.techStack).slice(0,3).map(([category, skills]) => {
+          const key = category.replace(/\s/g, '').replace(/&/g, ''); 
+          const limit = limits[key] || skills.length;
+          
+          return (
+            <div key={category}>
+              <h3 className="text-sm font-semibold mb-2 capitalize text-gray-700 dark:text-gray-300">{category.replace(/([A-Z])/g, ' $1')}</h3>
+              <div className="flex flex-wrap gap-1.5">
+                {/* Apply the limit using slice() */}
+                {skills.slice(0, limit).map(skill => (
+                  <span key={skill} className="px-2 py-0.5 text-xs rounded-md bg-gray-100 border border-gray-200 dark:bg-gray-800 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-colors">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </BentoCard>
+  );
+};
 
 const ProjectsCard: React.FC = () => (
   <BentoCard title="Recent Projects" iconName="RefreshCcw" className="md:col-span-4">
@@ -104,34 +121,48 @@ const CertificationsCard: React.FC = () => (
   </BentoCard>
 );
 
-export const BentoGrid: React.FC = () => (
-  <section className="grid grid-cols-1 md:grid-cols-6 gap-2">
-    
-    <BentoCard title="About" iconName="Compass" className="md:col-span-4">
-      <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{userData.about}</p>
-    </BentoCard>
+export const BentoGrid: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    <div className="col-span-1 md:col-span-2 md:row-span-1">
-      <ExperienceCard />
-    </div>
+  return (
+    // We wrap the entire grid in a fragment or use the section tag
+    <>
+      <section className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        
+        <BentoCard title="About" iconName="Compass" className="md:col-span-4">
+          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{userData.about}</p>
+        </BentoCard>
 
-    <BentoCard title="Beyond Coding" iconName="RefreshCcw" className="md:col-span-2">
-      <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 flex-1">{userData.beyondCoding}</p>
-      <a
-        href="/beyond-coding-details" 
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center w-full py-1.5 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-md"
-      >
-        Learn More
-      </a>
-    </BentoCard>
+        <div className="col-span-1 md:col-span-2 md:row-span-1">
+          <ExperienceCard />
+        </div>
 
-    <TechStackCard />
+        <BentoCard title="Beyond Coding" iconName="RefreshCcw" className="md:col-span-2">
+          <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 flex-1">{userData.beyondCoding}</p>
+          <a
+            href="/beyond-coding-details" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center w-full py-1.5 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-md"
+          >
+            Learn More
+          </a>
+        </BentoCard>
 
-    <ProjectsCard />
+        {/* FIX 3: Pass the handler to the TechStackCard */}
+        <TechStackCard onOpenModal={() => setIsModalOpen(true)} />
 
-    <CertificationsCard />
+        <ProjectsCard />
 
-  </section>
-);
+        <CertificationsCard />
+
+      </section>
+
+      {/* FIX 4: Render the modal outside the main grid section */}
+      <TechStackModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
+    </>
+  );
+};
