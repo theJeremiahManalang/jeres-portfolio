@@ -1,18 +1,11 @@
 import React from 'react';
 import { X } from 'lucide-react';
-// Assuming ExperienceItem is defined in '@/lib/types'
 import { ExperienceItem } from '@/lib/types'; 
 
-// Define an extended type needed for the details modal
-interface FullExperienceItem extends ExperienceItem {
-    description: string | string[];
-}
-
-// 🛑 FIX: Define the props expected by the usage in BentoGrid.tsx
 interface ExperienceRoleModalProps {
   isOpen: boolean;
   onClose: () => void;
-  role: FullExperienceItem | null; 
+  role: ExperienceItem | null; 
 }
 
 export const ExperienceRoleModal: React.FC<ExperienceRoleModalProps> = ({ isOpen, onClose, role }) => {
