@@ -4,36 +4,50 @@ import { Link } from 'lucide-react';
 import { BentoCard } from './BentoCard';
 import { userData } from '../../lib/data';
 import { TechStackModal } from './TechStackModal';
+import { ExperienceRoleModal } from './ExperienceRoleModal';
+import { ExperienceItem } from '@/lib/types';
 
+const ExperienceCard: React.FC<{ onRoleClick: (role: ExperienceItem) => void }> = ({ onRoleClick }) => {
 
-
-const ExperienceCard: React.FC = () => (
-  <BentoCard title="Experience" iconName="Briefcase" className="md:row-span-2 flex flex-col">
-    <div className="relative space-y-4 mt-1 flex-1">
-      <div className="absolute left-1.5 top-1.5 bottom-2 w-px bg-gray-200 dark:bg-gray-700"></div>
-      {userData.experience.map((role, index) => (
-        <div key={index} className="relative pl-6 group/role">
-          <div className={`absolute left-0 top-1.5 w-3 h-3 rounded-full border-2 transition-colors ${
-            role.isCurrent
-              ? 'border-blue-500 bg-blue-500'
-              : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 group-hover/role:bg-blue-500 dark:group-hover/role:bg-blue-500 cursor-pointer'
-          }`}></div>
-          <div className="space-y-1">
-            <h3 className={`text-sm font-semibold transition-colors ${role.isCurrent ? 'text-blue-500' : 'text-gray-900 dark:text-white group-hover/role:text-blue-500 dark:group-hover/role:text-blue-500 cursor-pointer'}`}>
-              {role.title}
-            </h3>
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-gray-600 dark:text-gray-400">{role.company}</span>
-              <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${role.isCurrent ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300' : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'}`}>
-                {role.year}
-              </span>
+    const handleRoleClick = (role: ExperienceItem) => {
+      onRoleClick(role);
+    };
+    
+    return (
+      <BentoCard title="Experience" iconName="Briefcase" className="md:row-span-2 flex flex-col">
+        <div className="relative space-y-4 mt-1 flex-1">
+          {/* Vertical Timeline Line */}
+          <div className="absolute left-1.5 top-1.5 bottom-2 w-px bg-gray-200 dark:bg-gray-700"></div>
+          
+          {/* Map and render the new component */}
+          {userData.experience.map((role, index) => (
+            <div 
+                key={index} 
+                className="relative pl-6 group/role cursor-pointer" 
+                onClick={() => handleRoleClick(role)} // Click handler calls the prop
+            >
+                <div className={`absolute left-0 top-1.5 w-3 h-3 rounded-full border-2 transition-colors ${
+                  role.isCurrent
+                    ? 'border-blue-500 bg-blue-500'
+                    : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 group-hover/role:bg-blue-500 dark:group-hover/role:bg-blue-500'
+                }`}></div>
+                <div className="space-y-1">
+                    <h3 className={`text-sm font-semibold transition-colors text-gray-900 dark:text-white group-hover/role:text-blue-500 dark:group-hover/role:text-blue-500`}>
+                      {role.title}
+                    </h3>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-600 dark:text-gray-400">{role.company}</span>
+                      <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${role.isCurrent ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300' : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'}`}>
+                        {role.year}
+                      </span>
+                    </div>
+                </div>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </BentoCard>
-);
+      </BentoCard>
+    );
+};
 
 const TechStackCard: React.FC<{ onOpenModal: () => void }> = ({ onOpenModal }) => {
   // Para di mag-overflow ang tech stack badges, we set limits per category
@@ -121,8 +135,23 @@ const CertificationsCard: React.FC = () => (
   </BentoCard>
 );
 
+
+
 export const BentoGrid: React.FC = () => {
+  // Tech Stack Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Experience Role Modal State
+  const [isExperienceModalOpen, setIsExperienceModalOpen] = useState(false);
+    
+  // State now uses the globally defined FullExperienceItem type
+  const [selectedRole, setSelectedRole] = useState<ExperienceItem | null>(null);
+
+  // Handler accepts FullExperienceItem (type corrected)
+  const handleRoleSelection = (role: ExperienceItem) => {
+      setSelectedRole(role); 
+      setIsExperienceModalOpen(true);
+  };
 
   return (
     // We wrap the entire grid in a fragment or use the section tag
@@ -134,7 +163,7 @@ export const BentoGrid: React.FC = () => {
         </BentoCard>
 
         <div className="col-span-1 md:col-span-2 md:row-span-1">
-          <ExperienceCard />
+          <ExperienceCard onRoleClick={handleRoleSelection} />
         </div>
 
         <BentoCard title="Beyond Coding" iconName="RefreshCcw" className="md:col-span-2">
@@ -163,6 +192,14 @@ export const BentoGrid: React.FC = () => {
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
       />
+
+      {selectedRole && (
+        <ExperienceRoleModal 
+            isOpen={isExperienceModalOpen}
+            onClose={() => setIsExperienceModalOpen(false)}
+            role={selectedRole} // Pass the selected role data
+        />
+      )}
     </>
   );
 };

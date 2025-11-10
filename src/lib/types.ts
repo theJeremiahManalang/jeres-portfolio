@@ -8,6 +8,7 @@ export interface ExperienceItem {
   company: string;
   year: string;
   isCurrent?: boolean;
+  description?: string | string[];
 }
 
 export interface ProjectItem {
