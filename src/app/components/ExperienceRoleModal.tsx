@@ -90,7 +90,7 @@ export const ExperienceRoleModal: React.FC<ExperienceRoleModalProps> = ({ isOpen
                 {/* --- End Header Section --- */}
                 
                 {/* Content Body */}
-                <div className="px-6 md:px-8 pb-6 md:pb-8">
+                <div className="px-6 md:px-8 pb-4 md:pb-8">
 
                     {/* Description/Details */}
                     <div className="space-y-4">
@@ -115,9 +115,9 @@ export const ExperienceRoleModal: React.FC<ExperienceRoleModalProps> = ({ isOpen
                     </div>
                     
                     {/* --- Certificate Image Section --- */}
-                    {role.imageUrl && (
+                    {role.imageCert && role.imageCert !== '#' && (
                         <>
-                            <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-6"></div>
+                            <div className="mt-4 border-t border-gray-200 dark:border-gray-700 pt-4"></div>
                             
                             <h3 className="text-md font-bold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
                                 <ImageIcon className="w-4 h-4 text-gray-500"/>Certificate of Completion
@@ -125,7 +125,7 @@ export const ExperienceRoleModal: React.FC<ExperienceRoleModalProps> = ({ isOpen
 
                             <div className="relative w-full h-auto bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden border border-gray-300 dark:border-gray-700 shadow-inner">
                                 <img 
-                                    src={role.imageUrl} 
+                                    src={role.imageCert} 
                                     alt={`Certificate for ${role.title} from ${role.company}`}
                                     className="w-full h-auto object-cover"
                                     onError={(e) => { 

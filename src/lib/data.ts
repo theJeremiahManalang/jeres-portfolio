@@ -11,10 +11,51 @@ export const userData: UserData = {
   beyondCoding: "When not writing code, I enjoy playing sports, such as basketball, volleyball, and chess. I also enjoy being part of organizations where I was awarded as the Rank 9 St. Vincent de Paul Student Leadership Award.",
   experience: [
     //{ title: "Principal AI Engineer", company: "Standard Chartered", year: "2025", isCurrent: true },
-    { title: "BS Computer Engineering", company: "Adamson University", year: "2025", description: ["Hello"], imageUrl: "#" },
-    { title: "Software Developer Intern", company: "Aboitiz Foods", year: "2025", imageUrl: "#"  },
-    { title: "Digital Transformation Intern", company: "Schneider Electric", year: "2023", imageUrl: "#"  },
-    { title: "Hello World! 👋🏻", company: "Wrote my first line of code", year: "2013", imageUrl: "#"  },
+    { 
+      title: "BS Computer Engineering", 
+      company: "Adamson University", 
+      year: "2025", 
+      description: [
+        "Rank 9 St. Vincent de Paul Student Leadership Awardee",
+        "Student Leadership Awardee - CpE Department",
+        "Chairperson for Sports and Recreation - Adamson University Student Government (AUSG) 2024-2025",
+        "Executive President - Adamson University Computer Engineering Society (ACOES) 2023-2024",
+        "3rd-Runner Up in Breadboarding Competition - Institute of Computer Engineers of the Philippines (ICpEP) 2024",
+        "Executive Vice President in Internal Affairs - Adamson University Engineering Student Council (AdU-ESC) 2022-2023",
+        "4th-Runner Up in Breadboarding Competition - Institute of Computer Engineers of the Philippines (ICpEP) 2023",
+        "Multimedia Video Editing Head - Adamson University Engineering Student Council (AdU-ESC) 2021-2023",
+      ], 
+      imageCert: "/gradpic-manalang.jpg", 
+    },
+    { 
+      title: "Software Developer Intern", 
+      company: "Aboitiz Foods", 
+      year: "2025", 
+      description: [
+        "Developed a customer-facing web application utilizing the jQuery framework to streamline payment request processing and improve overall user efficiency.",
+        "Established a data pipeline with Google Sheets for real-time data persistence and connected the app with automated Google Drive integration for secure multi-file uploads.",
+      ], 
+      imageCert: "/aboitiz-foods-cert-manalang.png",  
+    },
+    { 
+      title: "Digital Transformation Intern", 
+      company: "Schneider Electric", 
+      year: "2023", 
+      description: [
+        "Developed the User Interface (UI) for a 3D truck container filler using Unity and C#, enabling operators to visualize and optimize container box positioning.",
+        "Contributed to the development and integration of core system functionalities, directly enhancing the overall logistics efficiency and operational flow.",
+      ], 
+      imageCert: "/schneider-electric-cert-manalang.png", 
+    },
+    { 
+      title: "Hello World! 👋🏻", 
+      company: "Wrote my first line of code", 
+      year: "2013", 
+      description: [
+        "Hello World! :)"
+      ], 
+      imageCert: "#"  
+    },
   ],
   techStack: {
     frontend: ["HTML5", "CSS3", "JavaScript", "React", "TypeScript", "Next.js", "Vue.js", "Tailwind CSS", "Bootstrap"],
