@@ -43,21 +43,38 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ darkMode, setDarkMode }) => (
 // --- Main Application Component ---
 
 const ProfilePage: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(true);
-  const [mounted, setMounted] = useState(false);
+    
+    // 1. Initialize with a function that checks Local Storage once on mount
+    const [darkMode, setDarkMode] = useState<boolean>(() => {
+        if (typeof window !== 'undefined') {
+            const savedTheme = localStorage.getItem('theme');
+            // If theme is explicitly 'dark', set true. Otherwise, default to false (light).
+            return savedTheme === 'dark'; 
+        }
+        return false; // Default for Server-Side Rendering (SSR)
+    });
 
-  // CRITICAL FIX: Only set theme class after component mounts on the client
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+    // 2. Single useEffect hook for ALL theme management
+    useEffect(() => {
+        // This ensures the code only runs on the client after hydration
+        if (typeof window === 'undefined') return;
 
-  const themeClass = darkMode ? 'dark' : '';
-  const rootClasses = `${themeClass} min-h-screen font-sans antialiased text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-950 transition-colors duration-300`;
+        const root = window.document.documentElement;
 
-  // Hydration Fix: Return null until mounted to avoid SSR mismatch
-  if (!mounted) {
-    return null; 
-  }
+        // A. Toggle 'dark' class on the <html> element
+        if (darkMode) {
+            root.classList.add('dark');
+        } else {
+            root.classList.remove('dark');
+        }
+
+        // B. Save the current theme preference to Local Storage
+        localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+        
+    }, [darkMode]);
+
+  // The root classes remain the same, relying on the <html> tag for the theme switch
+    const rootClasses = `min-h-screen font-sans antialiased text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-950 transition-colors duration-300`;
 
   return (
     <div className={rootClasses}>
