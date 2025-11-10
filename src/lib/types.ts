@@ -9,6 +9,7 @@ export interface ExperienceItem {
   year: string;
   isCurrent?: boolean;
   description?: string | string[];
+  imageUrl?: string;
 }
 
 export interface ProjectItem {

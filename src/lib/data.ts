@@ -11,10 +11,10 @@ export const userData: UserData = {
   beyondCoding: "When not writing code, I enjoy playing sports, such as basketball, volleyball, and chess. I also enjoy being part of organizations where I was awarded as the Rank 9 St. Vincent de Paul Student Leadership Award.",
   experience: [
     //{ title: "Principal AI Engineer", company: "Standard Chartered", year: "2025", isCurrent: true },
-    { title: "BS Computer Engineering", company: "Adamson University", year: "2025", description: ["Hello"] },
-    { title: "Software Developer Intern", company: "Aboitiz Foods", year: "2025" },
-    { title: "Digital Transformation Intern", company: "Schneider Electric", year: "2023" },
-    { title: "Hello World! 👋🏻", company: "Wrote my first line of code", year: "2013" },
+    { title: "BS Computer Engineering", company: "Adamson University", year: "2025", description: ["Hello"], imageUrl: "#" },
+    { title: "Software Developer Intern", company: "Aboitiz Foods", year: "2025", imageUrl: "#"  },
+    { title: "Digital Transformation Intern", company: "Schneider Electric", year: "2023", imageUrl: "#"  },
+    { title: "Hello World! 👋🏻", company: "Wrote my first line of code", year: "2013", imageUrl: "#"  },
   ],
   techStack: {
     frontend: ["HTML5", "CSS3", "JavaScript", "React", "TypeScript", "Next.js", "Vue.js", "Tailwind CSS", "Bootstrap"],
