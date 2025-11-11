@@ -14,10 +14,11 @@ export interface ExperienceItem {
 
 export interface ProjectItem {
   name: string;
+  shortdescription: string;
   description: string;
   url: string; // link of github
   domain: string; 
-  imageProject?: string;
+  imageProject?: string[] | string;
 }
 
 export interface CertificationItem {
@@ -25,7 +26,7 @@ export interface CertificationItem {
   issuer: string;
   year?: string; 
   description?: string[] | string;
-  imageCert?: string[];
+  imageCert?: string[] | string;
 }
 
 export interface UserData {
@@ -46,6 +47,7 @@ export interface UserData {
   };
   projects: ProjectItem[];
   certifications: CertificationItem[];
+  socialmedialink: SocialMediaLink[];
 }
 
 export interface BentoCardProps {
@@ -58,4 +60,9 @@ export interface BentoCardProps {
 export interface ThemeToggleProps {
   darkMode: boolean;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface SocialMediaLink {
+  name?: string; // email, linkedin, github
+  link?: string;
 }

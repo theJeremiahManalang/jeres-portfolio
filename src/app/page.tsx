@@ -9,6 +9,7 @@ import { Mail, Phone, MapPin, Sun, Moon } from 'lucide-react';
 import { userData } from '../lib/data'; 
 import { BentoGrid } from './components/BentoGrid'; 
 import { ThemeToggleProps } from '../lib/types'; 
+import { Footer } from './components/Footer';
 
 // --- Shared/Utility Components ---
 
@@ -138,9 +139,9 @@ const ProfilePage: React.FC = () => {
           </div>
         </section>
 
-        {/* The corrected BentoGrid component usage */}
         <BentoGrid />
       </main>
+      <Footer />
     </div>
   );
 };

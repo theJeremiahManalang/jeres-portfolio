@@ -65,8 +65,8 @@ export const userData: UserData = {
     microcontrollers: ["Arduino UNO", "Arduino NANO", "Arduno Micro", "ESP32", "Raspberry Pi Pico/Pico W", "PIC18"],
   },
   projects: [
-    { name: "Keynergy", description: "Energy harvesting mechanical keyboard", url: "https://github.com/theJeremiahManalang/keynergy-ui", domain: "https://github.com/theJeremiahManalang/keynergy-ui", imageProject:"/keynergy-ui.jpg" },
-    { name: "MPL PH S16 AI-Predictor", description: "Predict the finals champion for MPL S16", url: "https://github.com/theJeremiahManalang/mpl-ph-s16-ai-dataset-builder", domain: "https://github.com/theJeremiahManalang/mpl-ph-s16-ai-dataset-builder", imageProject:"/n8n-workflow.jpg" },
+    { name: "Keynergy", shortdescription: "Energy harvesting mechanical keyboard", description: "A functional prototype for a sustainable mechanical keyboard that converts keypresses into electrical energy via electromagnetic induction.", url: "https://github.com/theJeremiahManalang/keynergy-ui", domain: "https://github.com/theJeremiahManalang/keynergy-ui", imageProject: ["/keynergy-ui.jpg", "/keynergy-hardware-manalang.png", "keynergy-group.jpg"] },
+    { name: "MPL PH S16 AI-Predictor", shortdescription: "N8N data scraper for MPL PH S16", description: "AI Predictor Dataset Builder (MPL PH S16) An n8n automation project that systematically scraped MPL PH Season 16 match stats over three days. The workflow iterates through matches, extracts specific data points, and appends them to a spreadsheet for machine learning preparation.", url: "https://github.com/theJeremiahManalang/mpl-ph-s16-ai-dataset-builder", domain: "https://github.com/theJeremiahManalang/mpl-ph-s16-ai-dataset-builder", imageProject:"/n8n-workflow.jpg" },
     
   ],
   certifications: [
@@ -78,7 +78,7 @@ export const userData: UserData = {
           "Recognized for outstanding leadership and community service throughout the academic year.",
           "Demonstrated proficiency in organizing large-scale student events."
       ],
-      imageCert: [ "/sla-manalang.jpg" ]
+      imageCert: "/sla-manalang.jpg",
     },
     { 
       name: "Student Leadership Award",
@@ -94,4 +94,22 @@ export const userData: UserData = {
       ]
     },  
   ],
+  socialmedialink: [
+    { 
+      name: "Linkedin", 
+      link: "https://www.linkedin.com/in/jeremiah-manalang/" 
+    },
+    { 
+      name: "Github", 
+      link: "https://github.com/theJeremiahManalang" 
+    },
+    { 
+      name: "Facebook", 
+      link: "https://www.facebook.com/jeremiah.manalang.12/" 
+    },
+    { 
+      name: "Instagram", 
+      link: "https://www.instagram.com/mayajere_/" 
+    }
+  ]
 };

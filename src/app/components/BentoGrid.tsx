@@ -1,6 +1,6 @@
 // src/app/components/BentoGrid.tsx
 import React, { useState } from 'react'; 
-import { Link } from 'lucide-react';
+import { Briefcase, Code, Compass, Award, RefreshCcw, Mail, Linkedin, Github, Link, X, Facebook, Instagram } from 'lucide-react';
 import { BentoCard } from './BentoCard';
 import { userData } from '../../lib/data';
 import { TechStackModal } from './TechStackModal';
@@ -8,6 +8,17 @@ import { ExperienceRoleModal } from './ExperienceRoleModal';
 import { CertificationModal } from './CertificationModal';
 import { ProjectModal } from './ProjectModal';
 import { CertificationItem, ExperienceItem, ProjectItem } from '@/lib/types';
+
+const getSocialIcon = (name?: string) => {
+    const standardizedName = name?.toLowerCase();
+    switch (standardizedName) {
+        case 'linkedin': return Linkedin;
+        case 'github': return Github;
+        case 'facebook': return Facebook;
+        case 'instagram': return Instagram;
+        default: return Link; // Default icon for unknown links
+    }
+};
 
 const ExperienceCard: React.FC<{ onRoleClick: (role: ExperienceItem) => void }> = ({ onRoleClick }) => {
 
@@ -113,7 +124,7 @@ const ProjectsCard: React.FC<{ onProjectClick: (project: ProjectItem) => void }>
                             <h3 className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 flex items-center gap-1.5">
                                 {project.name} <Link className="w-3 h-3 text-gray-400 dark:text-gray-600 group-hover:text-indigo-500"/>
                             </h3>
-                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">{project.description}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">{project.shortdescription}</p>
                         </div>
                         <p className="text-[10px] text-gray-500 font-mono bg-gray-200/50 dark:bg-gray-700/50 px-2 py-0.5 rounded-md block truncate overflow-hidden max-w-full mt-2 self-start">
                             {project.domain}
@@ -149,6 +160,34 @@ const CertificationsCard: React.FC<{ onCertClick: (cert: CertificationItem) => v
     );
 };
 
+/*
+const SocialMediaCard: React.FC<{ className?: string }> = ({ className }) => {
+    return (
+        <BentoCard title="Social Links" iconName="Link" className="md:col-span-6">
+            <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-3 mt-1">
+                {userData.socialmedialink.map((item) => {
+                    const Icon = getSocialIcon(item.name); 
+                    
+                    return (
+                        <a 
+                            key={item.name}
+                            href={item.link || '#'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center p-3 rounded-xl border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800 shadow-sm"
+                        >
+                            <Icon className={`w-4 h-4 mr-2 text-gray-700 dark:text-gray-300 transition-colors shrink-0`} />
+                            <span className="text-xs font-semibold text-gray-900 dark:text-white">
+                                {item.name}
+                            </span>
+                        </a> 
+                    );
+                })}
+            </div>
+        </BentoCard>
+    );
+};
+*/
 
 
 export const BentoGrid: React.FC = () => {
@@ -210,6 +249,8 @@ export const BentoGrid: React.FC = () => {
         <ProjectsCard onProjectClick={handleProjectSelection} />
 
         <CertificationsCard onCertClick={handleCertSelection} />
+
+        { /*<SocialMediaCard /> */}
 
       </section>
 
