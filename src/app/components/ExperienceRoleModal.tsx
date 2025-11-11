@@ -1,6 +1,6 @@
 import React from 'react';
 import { Briefcase, X, GraduationCap, Zap, Image as ImageIcon } from 'lucide-react';
-import { ExperienceItem } from '@/lib/types'; 
+import { ExperienceItem, CertificationItem } from '@/lib/types'; 
 
 
 interface ExperienceRoleModalProps {

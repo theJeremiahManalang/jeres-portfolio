@@ -65,13 +65,33 @@ export const userData: UserData = {
     microcontrollers: ["Arduino UNO", "Arduino NANO", "Arduno Micro", "ESP32", "Raspberry Pi Pico/Pico W", "PIC18"],
   },
   projects: [
-    { name: "Keynergy", description: "Energy harvesting mechanical keyboard", url: "#", domain: "https://youtu.be/6ZsAPNvZQUU" },
-    { name: "MPL PH S16 AI-Predictor", description: "Predict the finals champion for MPL S16", url: "#", domain: "base-404.com" },
-    { name: "DIIN.PH", description: "AI-powered wardrobe assistant", url: "https://diin.ph", domain: "diin.ph" },
-    { name: "DYNAMIS Workout Tracker", description: "AI-powered workout tracker", url: "https://dynamis-app.online", domain: "dynamis-app.online" },
+    { name: "Keynergy", description: "Energy harvesting mechanical keyboard", url: "https://github.com/theJeremiahManalang/keynergy-ui", domain: "https://github.com/theJeremiahManalang/keynergy-ui", imageProject:"/keynergy-ui.jpg" },
+    { name: "MPL PH S16 AI-Predictor", description: "Predict the finals champion for MPL S16", url: "https://github.com/theJeremiahManalang/mpl-ph-s16-ai-dataset-builder", domain: "https://github.com/theJeremiahManalang/mpl-ph-s16-ai-dataset-builder", imageProject:"/n8n-workflow.jpg" },
+    
   ],
   certifications: [
-    { name: "St. Vincent de Paul Student Leadership Award", issuer: "AdU - Office of Student Affairs", url: "#" },
-    { name: "Student Leadership Award", issuer: "AdU - CpE Department", url: "#" },
-  ]
+    { 
+      name: "St. Vincent de Paul Student Leadership Award",
+      issuer: "Adamson University - Office of Student Affairs",
+      year: "2025", // Added year for display context
+      description: [
+          "Recognized for outstanding leadership and community service throughout the academic year.",
+          "Demonstrated proficiency in organizing large-scale student events."
+      ],
+      imageCert: [ "/sla-manalang.jpg" ]
+    },
+    { 
+      name: "Student Leadership Award",
+      issuer: "Adamson University - Computer Engineering Department",
+      year: "2019", // Added year for display context
+      description: [
+          "Recognized for outstanding leadership and community service throughout the academic year.",
+          "Demonstrated proficiency in organizing large-scale student events."
+      ],
+      imageCert: [
+        "/sla-cpe-manalang.jpg",
+        "/sla-cpe-manalang-1.jpg",
+      ]
+    },  
+  ],
 };

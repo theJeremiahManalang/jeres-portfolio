@@ -15,14 +15,17 @@ export interface ExperienceItem {
 export interface ProjectItem {
   name: string;
   description: string;
-  url: string;
-  domain: string;
+  url: string; // link of github
+  domain: string; 
+  imageProject?: string;
 }
 
 export interface CertificationItem {
   name: string;
   issuer: string;
-  url: string;
+  year?: string; 
+  description?: string[] | string;
+  imageCert?: string[];
 }
 
 export interface UserData {
