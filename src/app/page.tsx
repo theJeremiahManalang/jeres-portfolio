@@ -94,7 +94,7 @@ const ProfilePage: React.FC = () => {
             {/* PROFILE IMAGE: Replace '/profile.jpg' with your actual image path */}
             <div className="flex-shrink-0">
                 <Image
-                    src="/profile.jpg" // CHANGE THIS PATH
+                    src="/profile.JPG" // CHANGE THIS PATH
                     alt={`${userData.name}'s profile picture`}
                     className="rounded-xl object-cover"
                     width={160}
