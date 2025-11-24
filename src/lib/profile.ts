@@ -3,11 +3,6 @@ import { MainPage } from './types';
 export const mainPage: MainPage = {
     sports: [{
       images: [
-        //'/sports/sports.jpg',
-        //'/sports/sports2.jpg',
-        //'/sports/sports3.jpg',
-        //'/sports/sports4.jpg',
-        //'/sports/sports5.jpg',
         '/sports/sports6.jpg',
         '/sports/sports7.jpg',
         '/sports/sports8.jpg',
@@ -16,7 +11,6 @@ export const mainPage: MainPage = {
         '/sports/acoes.jpg',
         '/sports/acoes3.jpg',
         '/sports/acoes4.jpg',
-        //'/sports/acoes5.jpg',
         '/sports/acoes6.jpg',
         '/sports/acoes7.jpg',
         '/sports/acoes8.jpg',
@@ -30,7 +24,6 @@ export const mainPage: MainPage = {
         '/sports/ausg5.jpg',
         '/sports/ausg6.jpg',
         '/sports/ausg7.jpg',
-        //'/sports/student.jpg',
       ],
   }],
     organizations: "A dynamic showcase of my sports, organizational, and video editing achievements.",
