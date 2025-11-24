@@ -29,8 +29,9 @@ const HomePage: React.FC = () => {
             autoSlideInterval={3000} // 3 seconds
           />
         </section>
-
+        
         {/* --- Content Below the Carousel --- */}
+        {/*
         <section id="content" className="p-10 bg-gray-100 min-h-[50vh]">
           <h1 className="text-3xl font-extrabold text-gray-900 mb-2">Sports & Leadership Showcase</h1>
           <p className="text-lg text-gray-700 max-w-3xl">
@@ -38,6 +39,7 @@ const HomePage: React.FC = () => {
             using the images defined in `profile.ts`.
           </p>
         </section>
+        */}
 
       </div>
     </>
