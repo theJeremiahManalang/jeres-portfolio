@@ -1,5 +1,6 @@
 // src/lib/data.ts
 import { UserData } from './types';
+// import { SportsImage, SportAchievement, OrganizationDetail, VideoProject } from './types';
 
 export const userData: UserData = {
   name: "Jeremiah L. Manalang",
@@ -114,3 +115,6 @@ export const userData: UserData = {
     }
   ]
 };
+
+// -------------------------------- Personal Page ----------------------------
+

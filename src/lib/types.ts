@@ -66,3 +66,15 @@ export interface SocialMediaLink {
   name?: string; // email, linkedin, github
   link?: string;
 }
+
+// -------------------------------- Personal Page ----------------------------
+// src/types.ts
+export interface MainPage {
+  sports: SportsItem[];
+  organizations: string;
+  videoEditing: string;
+}
+
+export interface SportsItem {
+  images: string[];
+}
