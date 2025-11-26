@@ -70,11 +70,20 @@ export interface SocialMediaLink {
 // -------------------------------- Personal Page ----------------------------
 // src/types.ts
 export interface MainPage {
+  main: BackgroundItem[];
   sports: SportsItem[];
   organizations: string;
   videoEditing: string;
 }
 
-export interface SportsItem {
+export interface BackgroundItem {
   images: string[];
+}
+
+export interface SportsItem {
+  year: string;
+  title: string;
+  description: string;
+  //icon?: string;
+  color?: string;
 }

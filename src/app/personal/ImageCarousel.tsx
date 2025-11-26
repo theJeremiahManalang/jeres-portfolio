@@ -4,13 +4,14 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { HeaderOverlay } from './HeaderOverlay'; 
+import { TextOverlay } from './TextOverlay';
 
 interface CarouselProps {
   images: string[];
   autoSlideInterval?: number;
 }
 
-const ImageCarousel: React.FC<CarouselProps> = ({ images, autoSlideInterval = 3000 }) => {
+export const ImageCarousel: React.FC<CarouselProps> = ({ images, autoSlideInterval = 5000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalImages = images.length;
 
@@ -59,19 +60,12 @@ const ImageCarousel: React.FC<CarouselProps> = ({ images, autoSlideInterval = 30
       <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
 
       {/* Central Text Overlay */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center z-10">
-        <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
-          Jeremiah L. Manalang
-        </h1>
-        <p className="text-2xl md:text-3xl font-light italic drop-shadow-md">
-          Student Leader, Sports Enthusiast, and Video Editor
-        </p>
-      </div>
+      <TextOverlay />
 
       {/* Navigation Buttons (rest of the component remains the same) */}
       <button 
         onClick={goToPrev} 
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-red-600/50 text-white rounded-full hover:bg-red-600 transition z-20" 
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-blue-600/50 text-white rounded-full hover:bg-blue-600 transition z-20" 
         aria-label="Previous Image"
       >
         <ChevronLeft size={30} />
@@ -79,7 +73,7 @@ const ImageCarousel: React.FC<CarouselProps> = ({ images, autoSlideInterval = 30
       
       <button 
         onClick={goToNext} 
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-red-600/50 text-white rounded-full hover:bg-red-600 transition z-20" 
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-blue-600/50 text-white rounded-full hover:bg-blue-600 transition z-20" 
         aria-label="Next Image"
       >
         <ChevronRight size={30} />
@@ -102,4 +96,3 @@ const ImageCarousel: React.FC<CarouselProps> = ({ images, autoSlideInterval = 30
   );
 };
 
-export default ImageCarousel;

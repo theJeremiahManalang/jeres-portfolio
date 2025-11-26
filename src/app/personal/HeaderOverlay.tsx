@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react'; // Import icons for menu toggle
 
 const NAV_LINKS = [
+  { href: "#about", label: "About" },
   { href: "#sports", label: "Sports" },
   { href: "#organizations", label: "Organizations" },
   { href: "#video-editing", label: "Video Editing" },
@@ -32,7 +33,7 @@ export const HeaderOverlay: React.FC = () => {
         <ul className="hidden md:flex space-x-8 text-lg">
           {NAV_LINKS.map(link => (
             <li key={link.href}>
-              <a href={link.href} className="hover:text-red-400 transition">
+              <a href={link.href} className="hover:text-blue-600 transition">
                 {link.label}
               </a>
             </li>
@@ -51,7 +52,7 @@ export const HeaderOverlay: React.FC = () => {
 
       {/* --- Mobile Dropdown Menu (Activated by Hamburger) --- */}
       <div 
-        className={`fixed top-0 right-0 h-full w-64 bg-black/90 backdrop-blur-sm shadow-xl transition-transform duration-300 ease-in-out z-30 ${
+        className={`fixed top-0 right-0 h-full w-64 bg-black/30 backdrop-blur-sm shadow-xl transition-transform duration-300 ease-in-out z-30 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
         // Add padding to avoid overlaying the top navigation bar/icon
@@ -62,7 +63,7 @@ export const HeaderOverlay: React.FC = () => {
             <li key={link.href}>
               <a 
                 href={link.href} 
-                className="hover:text-red-400 transition"
+                className="text-white hover:text-blue-600 transition"
               >
                 {link.label}
               </a>
