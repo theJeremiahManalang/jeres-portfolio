@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image'; // Assuming you use the Next.js Image component
-import { Mail, Phone, MapPin, Sun, Moon } from 'lucide-react';
+import { Mail, Phone, MapPin, Sun, Moon, ShoppingCart, X, CheckCircle } from 'lucide-react';
 
 // Corrected relative imports based on your structure
 import { userData } from '../lib/data'; 
@@ -55,6 +55,18 @@ const ProfilePage: React.FC = () => {
         return false; // Default for Server-Side Rendering (SSR)
     });
 
+    // 🛑 NEW STATE ADDED HERE
+    const [showToast, setShowToast] = useState(false);
+
+    // 🛑 NEW FUNCTION ADDED HERE
+    const handleAddToCart = (e: React.MouseEvent) => {
+        setShowToast(true);
+        // Hide the toast after 3 seconds
+        setTimeout(() => {
+            setShowToast(false);
+        }, 5000);
+    };
+
     // 2. Single useEffect hook for ALL theme management
     useEffect(() => {
         // This ensures the code only runs on the client after hydration
@@ -88,6 +100,17 @@ const ProfilePage: React.FC = () => {
       `}</style>
 
       <main className="max-w-4xl mx-auto px-4 py-8 md:py-12">
+        {showToast && (
+            <div className="fixed top-5 right-5 z-50 p-4 rounded-xl bg-green-500 shadow-xl transition-opacity duration-300 ease-in-out animate-in fade-in-0 slide-in-from-top-1">
+                <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />
+                    <p className="text-white font-medium text-sm">Added to Cart</p>
+                    <button onClick={() => setShowToast(false)} className="text-white/80 hover:text-white ml-2">
+                        <X className="w-4 h-4" />
+                    </button>
+                </div>
+            </div>
+        )}
         <section className="mb-6">
           <div className="flex items-start gap-4 md:gap-6">
             
@@ -119,7 +142,7 @@ const ProfilePage: React.FC = () => {
                 <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-3 mt-6">
+              <div className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-6">
                 <a 
                   href="https://calendly.com/jeremiah-manalang123/meeting" 
                   target="_blank" 
@@ -134,6 +157,16 @@ const ProfilePage: React.FC = () => {
                 >
                   <Mail className="w-4 h-4" /> Send Email
                 </a>
+                <a 
+                  href="https://drive.google.com/uc?export=download&id=1oxqNnfepR9OZjRjEbV2ySv9dVk_xFyv4" 
+                  download="Jeremiah_Manalang_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleAddToCart}
+                  className="inline-flex h-9 w-full sm:w-auto justify-center items-center rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:-translate-y-0.5 gap-1 whitespace-nowrap text-gray-700 dark:text-gray-300 shadow-sm dark:shadow-none"
+                >
+                  <ShoppingCart className="w-4 h-4" /> Add to Cart
+                </a>
               </div>
             </div>
           </div>

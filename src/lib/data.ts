@@ -105,14 +105,17 @@ export const userData: UserData = {
       name: "Github", 
       link: "https://github.com/theJeremiahManalang" 
     },
+    /*
     { 
       name: "Facebook", 
       link: "https://www.facebook.com/jeremiah.manalang.12/" 
     },
+    */
     { 
       name: "Instagram", 
       link: "https://www.instagram.com/mayajere_/" 
     }
+      
   ]
 };
 
