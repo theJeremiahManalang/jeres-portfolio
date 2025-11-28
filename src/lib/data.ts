@@ -80,7 +80,7 @@ export const userData: UserData = {
           "Recognized for outstanding leadership and community service throughout the academic year.",
           "Demonstrated proficiency in organizing large-scale student events."
       ],
-      imageCert: "/sla-manalang.jpg",
+      imageCert: "/awards/sla-manalang.jpg",
     },
     { 
       name: "Student Leadership Award",
@@ -91,10 +91,58 @@ export const userData: UserData = {
           "Demonstrated proficiency in organizing large-scale student events."
       ],
       imageCert: [
-        "/sla-cpe-manalang.jpg",
-        "/sla-cpe-manalang-1.jpg",
+        "/awards/sla-cpe-manalang.jpg",
+        "/awards/sla-cpe-manalang-1.jpg",
       ]
-    },  
+    },
+    { 
+      name: "ICPEP-NCR Breadboarding Competition 2023 - 3rd Runner-Up",
+      issuer: "Institute of Computer Engineers of the Philippines - NCR",
+      year: "2023", // Added year for display context
+      description: [
+          "Competed against various teams from different universities and secured the 3rd Runner-Up position in CpE Challenge 2023 by ICpEP-NCR.",
+      ],
+      imageCert: [
+        "/awards/icpep2023-1.jpg",
+        "/awards/icpep2023-2.jpg",
+      ]
+    },
+    { 
+      name: "CpEntellihente v5.0 Breadboarding Competition - Champion",
+      issuer: "Adamson Computer Engineering Society (ACOES)",
+      year: "2023", // Added year for display context
+      description: [
+          "Competed against different teams from Adamson University and secured the Champion position in CpEntellihente v5.0 Breadboarding Competition by ACOES.",
+      ],
+      imageCert: [
+        "/awards/cpentellihente-1.jpg",
+      ]
+    },
+    { 
+      name: "ICPEP-NCR Breadboarding Competition 2022 - Participant",
+      issuer: "Institute of Computer Engineers of the Philippines - NCR",
+      year: "2022", // Added year for display context
+      description: [
+          "Competed against various teams from different universities and didn't secure any position in CpE Challenge 2023 by ICpEP-NCR.",
+      ],
+      imageCert: [
+        "/awards/icpep2022-1.jpg",
+      ]
+    },
+    { 
+      name: "AltruHack: A Social Impact Hackaton - Finalist",
+      issuer: "Adamson University Neoscienceand Technology Incubation Center (AdU NEST)",
+      year: "2021", // Added year for display context
+      description: [
+          "Joined as a team to develop a prototype solution addressing social issues, reaching the finals in the AltruHack Social Impact Hackathon organized by AdU NEST.",
+      ],
+      imageCert: [
+        "/awards/altruhack-1.jpg",
+        "/awards/altruhack-2.jpg",
+        "/awards/altruhack-3.jpg",
+      ]
+    },
+
   ],
   socialmedialink: [
     { 

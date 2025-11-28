@@ -1,5 +1,5 @@
 // src/app/components/BentoGrid.tsx
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Briefcase, Code, Compass, Award, RefreshCcw, Mail, Linkedin, Github, Link as LinkIcon, X, Facebook, Instagram } from 'lucide-react';
 import { BentoCard } from './BentoCard';
@@ -64,44 +64,44 @@ const ExperienceCard: React.FC<{ onRoleClick: (role: ExperienceItem) => void }> 
 };
 
 const TechStackCard: React.FC<{ onOpenModal: () => void }> = ({ onOpenModal }) => {
-  // Para di mag-overflow ang tech stack badges, we set limits per category
-  const limits: { [key: string]: number } = {
-    frontend: 7,
-    backend: 7,
-    devtools: 6,
-  };
-  
-  return (
-    <BentoCard title="Tech Stack" iconName="Code" className="md:col-span-4">
-      {/* The 'View All' button now calls the onOpenModal prop */}
-      <button 
-          onClick={onOpenModal} 
-          className="absolute top-4 right-6 text-xs font-medium text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors flex items-center gap-1 group cursor-pointer"
-      >
-          View All <span className="text-sm leading-none transition-transform group-hover:translate-x-0.5">&gt;</span>
-      </button>
-      <div className="space-y-4">
-        {Object.entries(userData.techStack).slice(0,3).map(([category, skills]) => {
-          const key = category.replace(/\s/g, '').replace(/&/g, ''); 
-          const limit = limits[key] || skills.length;
-          
-          return (
-            <div key={category}>
-              <h3 className="text-sm font-semibold mb-2 capitalize text-gray-700 dark:text-gray-300">{category.replace(/([A-Z])/g, ' $1')}</h3>
-              <div className="flex flex-wrap gap-1.5">
-                {/* Apply the limit using slice() */}
-                {skills.slice(0, limit).map(skill => (
-                  <span key={skill} className="px-2 py-0.5 text-xs rounded-md bg-gray-100 border border-gray-200 dark:bg-gray-800 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-colors">
-                    {skill}
-                  </span>
-                ))}
-              </div>
+    // Para di mag-overflow ang tech stack badges, we set limits per category
+    const limits: { [key: string]: number } = {
+        frontend: 7,
+        backend: 7,
+        devtools: 6,
+    };
+    
+    return (
+        <BentoCard title="Tech Stack" iconName="Code" className="md:col-span-4">
+            {/* The 'View All' button now calls the onOpenModal prop */}
+            <button 
+                onClick={onOpenModal} 
+                className="absolute top-4 right-6 text-xs font-medium text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors flex items-center gap-1 group cursor-pointer"
+            >
+                View All <span className="text-sm leading-none transition-transform group-hover:translate-x-0.5">&gt;</span>
+            </button>
+            <div className="space-y-4">
+                {Object.entries(userData.techStack).slice(0,3).map(([category, skills]) => {
+                    const key = category.replace(/\s/g, '').replace(/&/g, ''); 
+                    const limit = limits[key] || skills.length;
+                    
+                    return (
+                        <div key={category}>
+                            <h3 className="text-sm font-semibold mb-2 capitalize text-gray-700 dark:text-gray-300">{category.replace(/([A-Z])/g, ' $1')}</h3>
+                            <div className="flex flex-wrap gap-1.5">
+                                {/* Apply the limit using slice() */}
+                                {skills.slice(0, limit).map(skill => (
+                                    <span key={skill} className="px-2 py-0.5 text-xs rounded-md bg-gray-100 border border-gray-200 dark:bg-gray-800 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-colors">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
-          );
-        })}
-      </div>
-    </BentoCard>
-  );
+        </BentoCard>
+    );
 };
 
 const ProjectsCard: React.FC<{ onProjectClick: (project: ProjectItem) => void }> = ({ onProjectClick }) => {
@@ -138,15 +138,25 @@ const ProjectsCard: React.FC<{ onProjectClick: (project: ProjectItem) => void }>
 };
 
 const CertificationsCard: React.FC<{ onCertClick: (cert: CertificationItem) => void }> = ({ onCertClick }) => {
+    const [showAllCerts, setShowAllCerts] = useState(false);
+
     // Wrapper function for handling the click event
     const handleCertClick = (cert: CertificationItem) => {
         onCertClick(cert);
     };
 
+    const displayedCerts = showAllCerts ? userData.certifications : userData.certifications.slice(0, 2);
+
     return (
         <BentoCard title="Recent Awards" iconName="Award" className="md:col-span-2">
+            <button 
+                onClick={() => setShowAllCerts(!showAllCerts)} 
+                className="absolute top-4 right-6 text-xs font-medium text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors flex items-center gap-1 group cursor-pointer"
+            >
+                {showAllCerts ? 'Show Less' : 'More'} <span className="text-sm leading-none transition-transform group-hover:translate-x-0.5">{showAllCerts ? '<' : '>'}</span>
+            </button>
             <div className="space-y-2 mt-2">
-                {userData.certifications.map((cert, index) => (
+                {displayedCerts.map((cert, index) => (
                     <div
                         key={index}
                         onClick={() => handleCertClick(cert)} // Now uses the wrapper function
@@ -192,97 +202,97 @@ const SocialMediaCard: React.FC<{ className?: string }> = ({ className }) => {
 
 
 export const BentoGrid: React.FC = () => {
-  // Modal States
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isExperienceModalOpen, setIsExperienceModalOpen] = useState(false);
-  const [isCertificationModalOpen, setIsCertificationModalOpen] = useState(false);
-  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
+    // Modal States
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isExperienceModalOpen, setIsExperienceModalOpen] = useState(false);
+    const [isCertificationModalOpen, setIsCertificationModalOpen] = useState(false);
+    const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
 
-  // Selected Item States
-  const [selectedRole, setSelectedRole] = useState<ExperienceItem | null>(null);
-  const [selectedCert, setSelectedCert] = useState<CertificationItem | null>(null);
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+    // Selected Item States
+    const [selectedRole, setSelectedRole] = useState<ExperienceItem | null>(null);
+    const [selectedCert, setSelectedCert] = useState<CertificationItem | null>(null);
+    const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
-  // Handlers
-  const handleRoleSelection = (role: ExperienceItem) => {
-      setSelectedRole(role); 
-      setIsExperienceModalOpen(true);
-  };
+    // Handlers
+    const handleRoleSelection = (role: ExperienceItem) => {
+        setSelectedRole(role); 
+        setIsExperienceModalOpen(true);
+    };
 
-  const handleCertSelection = (cert: CertificationItem) => {
-      setSelectedCert(cert);
-      setIsCertificationModalOpen(true);
-  };
+    const handleCertSelection = (cert: CertificationItem) => {
+        setSelectedCert(cert);
+        setIsCertificationModalOpen(true);
+    };
 
-  const handleProjectSelection = (project: ProjectItem) => {
+    const handleProjectSelection = (project: ProjectItem) => {
         setSelectedProject(project);
         setIsProjectModalOpen(true);
     };
 
-  return (
-    // We wrap the entire grid in a fragment or use the section tag
-    <>
-      <section className="grid grid-cols-1 md:grid-cols-6 gap-2">
-        
-        <BentoCard title="About" iconName="Compass" className="md:col-span-4">
-          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{userData.about}</p>
-        </BentoCard>
+    return (
+        // We wrap the entire grid in a fragment or use the section tag
+        <>
+            <section className="grid grid-cols-1 md:grid-cols-6 gap-2">
+                
+                <BentoCard title="About" iconName="Compass" className="md:col-span-4">
+                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{userData.about}</p>
+                </BentoCard>
 
-        <div className="col-span-1 md:col-span-2 md:row-span-1">
-          <ExperienceCard onRoleClick={handleRoleSelection} />
-        </div>
+                <div className="col-span-1 md:col-span-2 md:row-span-1">
+                    <ExperienceCard onRoleClick={handleRoleSelection} />
+                </div>
 
-        <BentoCard title="Beyond Coding" iconName="RefreshCcw" className="md:col-span-2">
-            <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 flex-1">{userData.beyondCoding}</p>
-            <Link
-              href="/personal" 
-              className="inline-flex items-center justify-center w-full py-1.5 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-md"
-            >
-              <LinkIcon className="mr-2 h-5 w-5" /> 
-              Learn More
-            </Link>
-        </BentoCard>
+                <BentoCard title="Beyond Coding" iconName="RefreshCcw" className="md:col-span-2">
+                        <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 flex-1">{userData.beyondCoding}</p>
+                        <Link
+                            href="/personal" 
+                            className="inline-flex items-center justify-center w-full py-1.5 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-md"
+                        >
+                            <LinkIcon className="mr-2 h-5 w-5" /> 
+                            Learn More
+                        </Link>
+                </BentoCard>
 
-        {/* FIX 3: Pass the handler to the TechStackCard */}
-        <TechStackCard onOpenModal={() => setIsModalOpen(true)} />
+                {/* FIX 3: Pass the handler to the TechStackCard */}
+                <TechStackCard onOpenModal={() => setIsModalOpen(true)} />
 
-        <ProjectsCard onProjectClick={handleProjectSelection} />
+                <ProjectsCard onProjectClick={handleProjectSelection} />
 
-        <CertificationsCard onCertClick={handleCertSelection} />
+                <CertificationsCard onCertClick={handleCertSelection} />
 
-        { /*<SocialMediaCard /> */}
+                { /*<SocialMediaCard /> */}
 
-      </section>
+            </section>
 
-      {/* Modals are rendered outside the grid structure */}
-      <TechStackModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-      />
+            {/* Modals are rendered outside the grid structure */}
+            <TechStackModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+            />
 
-      {selectedRole && (
-        <ExperienceRoleModal 
-            isOpen={isExperienceModalOpen}
-            onClose={() => setIsExperienceModalOpen(false)}
-            role={selectedRole}
-        />
-      )}
+            {selectedRole && (
+                <ExperienceRoleModal 
+                    isOpen={isExperienceModalOpen}
+                    onClose={() => setIsExperienceModalOpen(false)}
+                    role={selectedRole}
+                />
+            )}
 
-      {selectedCert && (
-        <CertificationModal
-            isOpen={isCertificationModalOpen}
-            onClose={() => setIsCertificationModalOpen(false)}
-            cert={selectedCert}
-        />
-      )}
+            {selectedCert && (
+                <CertificationModal
+                    isOpen={isCertificationModalOpen}
+                    onClose={() => setIsCertificationModalOpen(false)}
+                    cert={selectedCert}
+                />
+            )}
 
-      {selectedProject && (
-        <ProjectModal
-            isOpen={isProjectModalOpen}
-            onClose={() => setIsProjectModalOpen(false)}
-            project={selectedProject}
-        />
-      )}
-    </>
-  );
+            {selectedProject && (
+                <ProjectModal
+                    isOpen={isProjectModalOpen}
+                    onClose={() => setIsProjectModalOpen(false)}
+                    project={selectedProject}
+                />
+            )}
+        </>
+    );
 };
