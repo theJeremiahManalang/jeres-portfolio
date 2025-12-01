@@ -37,79 +37,78 @@ export const HeaderOverlay: React.FC = () => {
 
   // Determine the primary color (text/icons) based on the scroll state
   const textColor = isScrolled ? 'text-gray-800' : 'text-white';
-  const headerBg = isScrolled ? 'bg-white shadow-md' : 'bg-transparent';
 
   return (
     // Fixed position and dynamic background/shadow
-    <header className={`fixed top-0 left-0 w-full transition-all duration-300 z-50 ${headerBg}`}> 
-      <div className="flex justify-between items-center h-20 px-4 md:px-8 max-w-7xl mx-auto">
-        
-        {/* === LEFT: Mobile Menu Toggle / Desktop Nav === */}
-        <div className={`flex items-center space-x-4 ${textColor}`}>
-            {/* 1. Mobile Menu Toggle: Visible on SM and MD, hidden on LG and up */}
-            <button 
-                className="lg:hidden p-2" // Correct: Visible up to MD, hidden at LG
-                onClick={toggleMenu}
-                aria-label="Toggle navigation menu"
-                aria-controls="mobile-menu-drawer"
-                aria-expanded={isOpen}
-            >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-            
-            {/* 2. Desktop Navigation Menu: Hidden on SM and MD, visible on LG and up */}
-            <nav id="desktop-menu" className="hidden lg:block" aria-label="Main Navigation">
-                <ul className="flex space-x-6 lg:space-x-8 text-sm uppercase tracking-wide font-medium">
-                    {/* Re-add the Home link */}
-                    {NAV_LINKS.map(link => (
-                        <li key={link.href}>
-                            <a 
-                                href={link.href} 
-                                className="relative transition group" 
-                            >
-                                {link.label}
-                                <span className={`absolute left-0 bottom-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full bg-white`}></span>
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
-        </div>
+    <header className={`fixed top-0 left-0 w-full z-50 transition-shadow duration-300 ${isScrolled ? 'shadow-md' : 'shadow-none'}`}>
+        <div className={`relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:bg-white before:z-0 before:transition-height before:duration-300 before:ease-in-out ${
+                    isScrolled ? 'before:h-full' : 'before:h-0'
+                }`}>
+            <div className={`flex justify-between items-center h-25 px-4 lg:px-30 max-w-8sxl mx-auto relative z-10 border-b ${isScrolled ? 'border-gray-100' : 'border-white'}`}>                
+                {/* === LEFT: Mobile Menu Toggle / Desktop Nav === */}
+                <div className={`flex items-center space-x-4 ${textColor}`}>
+                    {/* 1. Mobile Menu Toggle: Visible on SM and MD, hidden on LG and up */}
+                    <button 
+                        className="lg:hidden p-2" // Correct: Visible up to MD, hidden at LG
+                        onClick={toggleMenu}
+                        aria-label="Toggle navigation menu"
+                        aria-controls="mobile-menu-drawer"
+                        aria-expanded={isOpen}
+                    >
+                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                    
+                    {/* 2. Desktop Navigation Menu: Hidden on SM and MD, visible on LG and up */}
+                    <nav id="desktop-menu" className="hidden lg:block" aria-label="Main Navigation">
+                        <ul className="flex font-main font-medium space-x-6 lg:space-x-8 text-sm uppercase tracking-wide font-medium">
+                            {/* Re-add the Home link */}
+                            {NAV_LINKS.map(link => (
+                                <li key={link.href}>
+                                    <a 
+                                        href={link.href} 
+                                        className=" relative transition group" 
+                                    >
+                                        {link.label}
+                                        <span className={`
+                                            absolute left-0 bottom-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full 
+                                            // The underline must be dark when scrolled/white background, and white when transparent
+                                            ${isScrolled ? 'bg-gray-800' : 'bg-white'}
+                                        `}></span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                </div>
 
-        {/* === CENTER: Logo === */}
-        <a 
-          href="/" 
-          className="absolute left-1/2 transform -translate-x-1/2 h-10 md:h-12"
-          aria-label="Charlotte Folk Home"
-        >
-          <span className={`text-2xl font-serif font-bold transition-colors duration-300 ${textColor}`}>
-              JEREMIAH
-          </span>
-        </a>
-
-        {/* === RIGHT: Action Icons (Login, Search, Cart) === */}
-        <div className={`flex items-center space-x-4 ${textColor}`}>
-            <a 
-                href="/account" 
-                title="My Account" 
-                className="hidden sm:flex items-center space-x-1 text-sm font-medium hover:text-blue-600 transition"
-            >
-                <User size={18} className="hidden lg:block" />
-                <span>Login</span>
-            </a>
-            
-            <a href="/search" title="Search" className="hover:text-blue-600 transition p-2">
-                <Search size={20} />
-            </a>
-            
-            <a href="/cart" title="Cart" className="relative hover:text-blue-600 transition p-2">
-                <ShoppingCart size={20} />
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-                    0
+                {/* === CENTER: Logo === */}
+                <a 
+                href="/" 
+                className="absolute left-1/2 transform -translate-x-1/2 h-10 md:h-10 "
+                aria-label="Charlotte Folk Home"
+                >
+                <span className={`text-3xl font-title font-black uppercase tracking-normal transition-colors duration-300 ${textColor}`}>
+                    Jeremiah Manalang
                 </span>
-            </a>
-        </div>
-      </div>
+                </a>
+
+                {/* === RIGHT: Action Icons (Login, Search, Cart) === */}
+                <div className={`flex items-center space-x-4 ${textColor}`}>
+                    <a 
+                        href="/" 
+                        title="Go Back to Homepage" 
+                        className="hidden sm:flex items-center space-x-1 text-sm font-main font-medium uppercase relative group transition-colors duration-300"
+                    >
+                        <span>RESUME</span>
+                        <span className={`
+                            absolute left-0 bottom-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full 
+                            // The underline must be dark when scrolled/white background, and white when transparent
+                            ${isScrolled ? 'bg-gray-800' : 'bg-white'}
+                        `}></span>
+                    </a>
+                </div>
+            </div>
+        </div> 
       
       {/* --- Mobile Menu Drawer (Always opaque white text/icons for contrast) --- */}
       <div 
@@ -135,7 +134,7 @@ export const HeaderOverlay: React.FC = () => {
                   <X size={24} />
               </button>
               
-              <ul className="flex flex-col space-y-4 pt-24 px-6 text-lg font-semibold uppercase">
+              <ul className="flex flex-col space-y-4 pt-24 px-6 text-lg font-main-200 uppercase">
                   {NAV_LINKS.map(link => (
                       <li key={link.href}>
                           <a 

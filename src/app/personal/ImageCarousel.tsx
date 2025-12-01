@@ -57,7 +57,7 @@ export const ImageCarousel: React.FC<CarouselProps> = ({ images, autoSlideInterv
       />
 
       {/* Dark Overlay for contrast */}
-      <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
 
       {/* Central Text Overlay */}
       <TextOverlay />

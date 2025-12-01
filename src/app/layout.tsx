@@ -2,6 +2,7 @@
 
 import type { Metadata } from "next";
 import { Geist } from "next/font/google"; // Removed Geist_Mono for brevity, but you can keep it
+import { bodyFont, headingFont, mainFont, titleFont, subtitleFont } from '../lib/font';
 import "./globals.css";
 
 // Initialize Geist font with variables
@@ -31,7 +32,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} antialiased`}
+        className={`
+          ${geistSans.variable} 
+          ${bodyFont.variable} 
+          ${headingFont.variable} 
+          ${mainFont.variable} 
+          ${titleFont.variable} 
+          ${subtitleFont.variable} 
+        antialiased`}
         // You can add geistMono.variable back if needed
       >
         {/* *** FIX FOR EXTERNAL SCRIPTS/EXTENSIONS (like Grammarly) ***
