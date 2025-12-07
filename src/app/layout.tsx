@@ -5,6 +5,8 @@ import { Geist } from "next/font/google"; // Removed Geist_Mono for brevity, but
 import { bodyFont, headingFont, mainFont, titleFont, subtitleFont } from '../lib/font';
 import "./globals.css";
 
+
+
 // Initialize Geist font with variables
 const geistSans = Geist({
   variable: "--font-geist-sans",
