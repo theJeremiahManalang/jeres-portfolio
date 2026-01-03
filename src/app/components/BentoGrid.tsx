@@ -245,7 +245,7 @@ export const BentoGrid: React.FC = () => {
                 <BentoCard title="Beyond Coding" iconName="RefreshCcw" className="md:col-span-2">
                         <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 flex-1">{userData.beyondCoding}</p>
                         <Link
-                            href="/404" 
+                            href="#" 
                             className="inline-flex items-center justify-center w-full py-1.5 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-md"
                         >
                             <LinkIcon className="mr-2 h-5 w-5" /> 
