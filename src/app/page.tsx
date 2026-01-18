@@ -115,7 +115,7 @@ const ProfilePage: React.FC = () => {
           <div className="flex items-start gap-4 md:gap-6">
             
             {/* PROFILE IMAGE: Replace '/profile.jpg' with your actual image path */}
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
                 <Image
                     src="/profile.JPG" // CHANGE THIS PATH
                     alt={`${userData.name}'s profile picture`}
@@ -151,12 +151,12 @@ const ProfilePage: React.FC = () => {
                 >
                   <Phone className="w-4 h-4" /> Schedule a Call
                 </a>
-                <a 
+                {/* <a 
                   href="mailto:jeremiah.manalang123@gmail.com" 
                   className="inline-flex h-9 w-full sm:w-auto justify-center items-center rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:-translate-y-0.5 gap-1 whitespace-nowrap text-gray-700 dark:text-gray-300 shadow-sm dark:shadow-none"
                 >
                   <Mail className="w-4 h-4" /> Send Email
-                </a>
+                </a> */}
                 <a 
                   href="https://drive.google.com/uc?export=download&id=1oxqNnfepR9OZjRjEbV2ySv9dVk_xFyv4" 
                   download="Jeremiah_Manalang_Resume.pdf"
@@ -165,7 +165,7 @@ const ProfilePage: React.FC = () => {
                   onClick={handleAddToCart}
                   className="inline-flex h-9 w-full sm:w-auto justify-center items-center rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:-translate-y-0.5 gap-1 whitespace-nowrap text-gray-700 dark:text-gray-300 shadow-sm dark:shadow-none"
                 >
-                  <ShoppingCart className="w-4 h-4" /> Add to Cart
+                  <ShoppingCart className="w-4 h-4" />Add to Cart
                 </a>
               </div>
             </div>

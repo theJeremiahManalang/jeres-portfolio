@@ -13,6 +13,19 @@ export const userData: UserData = {
   experience: [
     //{ title: "Principal AI Engineer", company: "Standard Chartered", year: "2025", isCurrent: true },
     { 
+      title: "Junior Systems Developer", 
+      company: "Wilcon Depot", 
+      year: "2026", 
+      description: [
+        "Improved the user interface of the sales mobility section of the company's overall system using Vue.js and Bootstrap, enhancing user experience and operational efficiency.",
+        "Added the scanning functionality for product barcodes using Zxing library, for determining the barcode information.",
+        "Designed and implemented offline-first data storage with IndexedDB, allowing users to continue working seamlessly without connectivity.",
+        
+      ], 
+      // imageCert: ["/gradpic-manalang.jpg"],
+      isCurrent: true, 
+    },
+    { 
       title: "BS Computer Engineering", 
       company: "Adamson University", 
       year: "2025", 
@@ -26,7 +39,7 @@ export const userData: UserData = {
         "4th-Runner Up in Breadboarding Competition - Institute of Computer Engineers of the Philippines (ICpEP) 2023",
         "Multimedia Video Editing Head - Adamson University Engineering Student Council (AdU-ESC) 2021-2023",
       ], 
-      imageCert: "/gradpic-manalang.jpg", 
+      imageCert: ["/gradpic-manalang.jpg"], 
     },
     { 
       title: "Software Developer Intern", 
@@ -36,7 +49,7 @@ export const userData: UserData = {
         "Developed a customer-facing web application utilizing the jQuery framework to streamline payment request processing and improve overall user efficiency.",
         "Established a data pipeline with Google Sheets for real-time data persistence and connected the app with automated Google Drive integration for secure multi-file uploads.",
       ], 
-      imageCert: "/aboitiz-foods-cert-manalang.png",  
+      imageCert: ["/aboitiz-foods-cert-manalang.png"],  
     },
     { 
       title: "Digital Transformation Intern", 
@@ -46,7 +59,10 @@ export const userData: UserData = {
         "Developed the User Interface (UI) for a 3D truck container filler using Unity and C#, enabling operators to visualize and optimize container box positioning.",
         "Contributed to the development and integration of core system functionalities, directly enhancing the overall logistics efficiency and operational flow.",
       ], 
-      imageCert: "/schneider-electric-cert-manalang.png", 
+      imageCert: [
+        "/schneider-electric-cert-manalang.png",
+        "/schneider-pic.jpg",
+      ]
     },
     { 
       title: "Hello World! 👋🏻", 
@@ -55,13 +71,13 @@ export const userData: UserData = {
       description: [
         "Hello World! :)"
       ], 
-      imageCert: "#"  
+      imageCert: ["#"]  
     },
   ],
   techStack: {
-    frontend: ["HTML5", "CSS3", "JavaScript", "React", "TypeScript", "Next.js", "Vue.js", "Tailwind CSS", "Bootstrap"],
-    backend: ["PHP", "Python", "MySQL", "SQLite", "Firebase", "C#/.NET", "Laravel", ".NET Core/ASP.NET Core"],
-    devtools: ["Git", "Github", "Visual Studio", "VS Code", "Pycharm", "Jupyter Notebook", "Arduino IDE", "Thonny IDE", "Google Colab", "Notion", "Discord", "MS Teams"],
+    frontend: ["HTML5", "CSS3", "JavaScript", "React", "Next.js", "Vue.js", "Tailwind CSS", "Bootstrap", "Buefy", "Bulma"],
+    backend: ["PHP", "TypeScript", "Python", "MySQL", "SQLite", "Firebase", "C#/.NET", "Laravel", ".NET Core/ASP.NET Core", "DBeaver"],
+    devtools: ["Git", "Github", "Github Desktop", "Visual Studio", "VS Code", "Pycharm", "Jupyter Notebook", "Arduino IDE", "Thonny IDE", "Google Colab", "Notion", "Discord", "MS Teams"],
     aiml: ["TensorFlow", "PyTorch", "Roboflow", "n8n", "YOLOv8"],
     microcontrollers: ["Arduino UNO", "Arduino NANO", "Arduno Micro", "ESP32", "Raspberry Pi Pico/Pico W", "PIC18"],
   },
@@ -72,6 +88,15 @@ export const userData: UserData = {
     
   ],
   certifications: [
+    { 
+      name: "1st Naga City Mayoral Hackathon - Participant",
+      issuer: "Mayor Leni Robredo Office of Naga City",
+      year: "2026", // Added year for display context
+      description: [
+          "Led the team’s hackathon pitch by clearly articulating the product vision, problem statement, and value proposition to judges.",
+      ],
+      imageCert: "/awards/mynaga-pic.png",
+    },
     { 
       name: "St. Vincent de Paul Student Leadership Award",
       issuer: "Adamson University - Office of Student Affairs",

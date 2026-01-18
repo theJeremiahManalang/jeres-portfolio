@@ -115,25 +115,61 @@ export const ExperienceRoleModal: React.FC<ExperienceRoleModalProps> = ({ isOpen
                     </div>
                     
                     {/* --- Certificate Image Section --- */}
-                    {role.imageCert && role.imageCert !== '#' && (
+                    {role.imageCert && (
                         <>
-                            <div className="mt-4 border-t border-gray-200 dark:border-gray-700 pt-4"></div>
-                            
-                            <h3 className="text-md font-bold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
-                                <ImageIcon className="w-4 h-4 text-gray-500"/>Certificate of Completion
-                            </h3>
+                            {/* Handle both array and single string for backward compatibility */}
+                            {Array.isArray(role.imageCert) ? (
+                                role.imageCert.length > 0 && role.imageCert[0] !== '#' && (
+                                    <>
+                                        <div className="mt-4 border-t border-gray-200 dark:border-gray-700 pt-4"></div>
+                                        
+                                        <h3 className="text-md font-bold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
+                                            <ImageIcon className="w-4 h-4 text-gray-500"/>
+                                            {role.imageCert.length === 1 ? 'Certificate of Completion' : 'Certificates & Images'}
+                                        </h3>
 
-                            <div className="relative w-full h-auto bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden border border-gray-300 dark:border-gray-700 shadow-inner">
-                                <img 
-                                    src={role.imageCert} 
-                                    alt={`Certificate for ${role.title} from ${role.company}`}
-                                    className="w-full h-auto object-cover"
-                                    onError={(e) => { 
-                                        e.currentTarget.onerror = null; 
-                                        e.currentTarget.src = "https://placehold.co/400x300/e5e7eb/4b5563?text=Certificate+Image+Unavailable"; 
-                                    }}
-                                />
-                            </div>
+                                        <div className="grid grid-cols-1 gap-4">
+                                            {role.imageCert.map((imageUrl, index) => (
+                                                imageUrl && imageUrl !== '#' && (
+                                                    <div key={index} className="relative w-full h-auto bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden border border-gray-300 dark:border-gray-700 shadow-inner">
+                                                        <img 
+                                                            src={imageUrl} 
+                                                            alt={`Certificate ${index + 1} for ${role.title} from ${role.company}`}
+                                                            className="w-full h-auto object-cover"
+                                                            onError={(e) => { 
+                                                                e.currentTarget.onerror = null; 
+                                                                e.currentTarget.src = "https://placehold.co/400x300/e5e7eb/4b5563?text=Certificate+Image+Unavailable"; 
+                                                            }}
+                                                        />
+                                                    </div>
+                                                )
+                                            ))}
+                                        </div>
+                                    </>
+                                )
+                            ) : (
+                                role.imageCert !== '#' && (
+                                    <>
+                                        <div className="mt-4 border-t border-gray-200 dark:border-gray-700 pt-4"></div>
+                                        
+                                        <h3 className="text-md font-bold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
+                                            <ImageIcon className="w-4 h-4 text-gray-500"/>Certificate of Completion
+                                        </h3>
+
+                                        <div className="relative w-full h-auto bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden border border-gray-300 dark:border-gray-700 shadow-inner">
+                                            <img 
+                                                src={role.imageCert} 
+                                                alt={`Certificate for ${role.title} from ${role.company}`}
+                                                className="w-full h-auto object-cover"
+                                                onError={(e) => { 
+                                                    e.currentTarget.onerror = null; 
+                                                    e.currentTarget.src = "https://placehold.co/400x300/e5e7eb/4b5563?text=Certificate+Image+Unavailable"; 
+                                                }}
+                                            />
+                                        </div>
+                                    </>
+                                )
+                            )}
                         </>
                     )}
                     {/* --- End Certificate Image Section --- */}
