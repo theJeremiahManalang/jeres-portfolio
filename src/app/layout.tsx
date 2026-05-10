@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google"; // Removed Geist_Mono for brevity, but you can keep it
 import { bodyFont, headingFont, mainFont, titleFont, subtitleFont } from '../lib/font';
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 
 
@@ -53,6 +54,7 @@ export default function RootLayout({
         <div suppressHydrationWarning>
           {children}
         </div>
+        <Analytics />
       </body>
     </html>
   );
